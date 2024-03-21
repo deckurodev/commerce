@@ -2,6 +2,3 @@ spring:
   profiles:
     active: local
     include: core
-#  h2:
-#    console:
-#      enabled: true
