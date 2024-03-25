@@ -1,32 +1,35 @@
-package com.commerce.products.service
+package com.commerce.products.product.service
 
-import com.commerce.products.controller.dto.CreateProductRequest
-import com.commerce.products.controller.dto.UpdateProductRequest
-import com.commerce.products.domain.Product
-import com.commerce.products.domain.ProductRepository
+import com.commerce.products.product.controller.dto.CreateProductRequest
+import com.commerce.products.product.controller.dto.UpdateProductRequest
+import com.commerce.products.domain.product.Product
+import com.commerce.products.domain.product.ProductRepository
+import com.commerce.products.domain.product.event.ProductCreatedEvent
 import com.commerce.products.util.findByIdOrThrow
 import lombok.RequiredArgsConstructor
+import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
-@Transactional(readOnly = true)
+@Transactional
 @RequiredArgsConstructor
 @Service
 class ProductService(
-    private val productRepository: ProductRepository
+    private val productRepository: ProductRepository,
+    private val applicationEventPublisher: ApplicationEventPublisher,
 ) {
-    @Transactional
     fun createProduct(createProductRequest: CreateProductRequest)
     {
-        productRepository.save(
+        val product = productRepository.save(
             Product(
                 name = createProductRequest.name,
                 price = createProductRequest.price
             )
         )
+
+        applicationEventPublisher.publishEvent(ProductCreatedEvent(product.productId!!, product.price));
     }
 
-    @Transactional
     fun updateProduct(productId: Long, updateProductRequest: UpdateProductRequest)
     {
         val product = productRepository.findByIdOrThrow(productId)

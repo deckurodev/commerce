@@ -53,6 +53,7 @@ subprojects{
     apply(plugin = "io.spring.dependency-management")
     apply(plugin = "org.jetbrains.kotlin.plugin.spring")
     apply(plugin = "org.jetbrains.kotlin.plugin.jpa")
+
     apply(plugin = "kotlin")
     apply(plugin = "kotlin-kapt")
 
@@ -66,6 +67,7 @@ subprojects{
         runtimeOnly("com.h2database:h2")
         implementation("org.springframework.boot:spring-boot-starter")
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+        implementation("org.springframework.boot:spring-boot-starter-validation")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         compileOnly("org.projectlombok:lombok")
         annotationProcessor("org.projectlombok:lombok")

@@ -1,4 +1,4 @@
-package com.commerce.products.controller.dto
+package com.commerce.products.product.controller.dto
 
 data class UpdateProductRequest(
     val name : String,

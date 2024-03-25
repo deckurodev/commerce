@@ -1,5 +1,6 @@
-package com.commerce.products.service
+package com.commerce.products.product.service
 
+import com.commerce.products.product.service.ProductService
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest

@@ -1,6 +1,7 @@
 package com.commerce.products.domain
 
-import org.assertj.core.api.Assertions
+import com.commerce.products.domain.product.Product
+import com.commerce.products.domain.product.ProductRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
